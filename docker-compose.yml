@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
+    container_name: elasticsearch
+    environment:
+      discovery.type: single-node
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
+    network_mode: host
+
+  logstash:
+    image: logstash:7.2.0
+    container_name: logstash
+    volumes:
+      - ./config/logstash/config:/usr/share/logstash/config
+      - ./config/logstash/pipeline:/usr/share/logstash/pipeline
+    network_mode: host
+
+  kibana:
+    image: kibana:7.1.1
+    container_name: kibana
+    volumes:
+      - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml 
+    network_mode: host
+
+
