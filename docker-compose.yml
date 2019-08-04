@@ -3,7 +3,7 @@ version: '2'
 services:
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
+    image: mubee-elk.kr.ncr.ntruss.com/elasticsearch:0.1
     container_name: elasticsearch
     environment:
       discovery.type: single-node
@@ -12,7 +12,7 @@ services:
     network_mode: host
 
   logstash:
-    image: logstash:7.2.0
+    image: mubee-elk.kr.ncr.ntruss.com/logstash:0.1 
     container_name: logstash
     volumes:
       - ./config/logstash/config:/usr/share/logstash/config
@@ -20,7 +20,7 @@ services:
     network_mode: host
 
   kibana:
-    image: kibana:7.1.1
+    image: mubee-elk.kr.ncr.ntruss.com/kibana:0.1
     container_name: kibana
     volumes:
       - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml 
